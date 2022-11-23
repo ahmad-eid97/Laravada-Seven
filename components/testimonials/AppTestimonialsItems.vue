@@ -4,9 +4,7 @@
             <div class="section-title text-center">
                 <span class="sp-color2">Our Clients</span>
                 <h2>Our Clients Feedback</h2>
-                <div class="seprator">
-                    <img src="https://avada.theme-fusion.com/financial-advisor/wp-content/uploads/sites/145/2020/08/slant-separator.png" alt="">
-                </div>
+                
             </div>
             <div class="col-12">
                 
@@ -14,12 +12,12 @@
                     :options="swiperOption"
                 >
 
-                    <swiper-slide>
+                    <swiper-slide v-for="client in clients.testimonials" :key="client.id">
                         <div class="item">
                             <div class="row align-items-center">
                                 <div class="col-lg-6">
                                     <div class="clients-slider-img">
-                                        <img src="/assets/images/client-1.png" alt="Images">
+                                        <img :src="client.image" alt="Images">
                                         <div class="clients-slider-circle"></div>
                                     </div>
                                 </div>
@@ -29,35 +27,10 @@
                                             <font-awesome-icon icon="fa-solid fa-quote-left" />
                                         </div>
                                         <p>
-                                            “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at ligula eget lectus consequat volutpat. Donec elit libero, finibus eget scelerisque sed, tempor sit amet erat. Pellentesque tincidunt a purus sit amet ullamcorper. Vestibulum ultrices ligula in pharetra sagittis. Quisque lacinia magna dolor, at tempus sem consequat at.”
+                                            {{client.description}}
                                         </p>
-                                        <h3>Jonthon Martin</h3>
-                                        <span>App Developer</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </swiper-slide>
-
-                    <swiper-slide>
-                        <div class="item">
-                            <div class="row align-items-center">
-                                <div class="col-lg-6">
-                                    <div class="clients-slider-img">
-                                        <img src="/assets/images/client-2.png" alt="Images">
-                                        <div class="clients-slider-circle"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="clients-slider-content">
-                                        <div class="svg">
-                                            <font-awesome-icon icon="fa-solid fa-quote-left" />
-                                        </div>
-                                        <p>
-                                            “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at ligula eget lectus consequat volutpat. Donec elit libero, finibus eget scelerisque sed, tempor sit amet erat. Pellentesque tincidunt a purus sit amet ullamcorper. Vestibulum ultrices ligula in pharetra sagittis. Quisque lacinia magna dolor, at tempus sem consequat at.”
-                                        </p>
-                                        <h3>Jonthon Martin</h3>
-                                        <span>App Developer</span>
+                                        <h3>{{client.title}}</h3>
+                                        <span>{{client.job}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +56,8 @@ export default {
                 spaceBetween: 50,
             }
         }
-    }
+    },
+    props: ["clients"]
 }
 </script>
 
@@ -93,7 +67,6 @@ export default {
   z-index: 1;
   background-color: #fff;
   padding-bottom: 0 !important;
-  background: #51e5a5;
 }
 .clients-area::before {
   content: '';
@@ -116,11 +89,11 @@ export default {
   margin-bottom: 8px;
   font-weight: 600;
   display: block;
-  color: #fff;
+  color: var(--main-color);
 }
 .clients-area-two .section-title h2 {
     max-width: 600px;
-    color: #212934;
+    color: #252525;
     font-size: 35px;
     font-weight: 800;
     letter-spacing: -1px;
@@ -167,20 +140,13 @@ export default {
   height: 90%;
   -webkit-animation: border-transform 15s infinite ease-in-out;
   animation: border-transform 15s infinite ease-in-out;
-    background: rgb(89,78,226);
-background: linear-gradient(135deg, rgba(89,78,226,1) 0%, rgba(78,67,214,1) 100%); 
+    background: var(--main-color);
 }
 .clients-area p {
     color: var(--main-color);
 }
-
-.clients-slider-content {
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
 .clients-slider-content .svg {
-  border-radius: 30px 8px;
+  border-radius: 12px;
   width: 80px;
   height: 80px;
   line-height: 82px;
@@ -192,6 +158,11 @@ background: linear-gradient(135deg, rgba(89,78,226,1) 0%, rgba(78,67,214,1) 100%
   margin-bottom: 30px;
   position: relative;
   z-index: 1;
+}
+
+.clients-slider-content {
+    padding: 30px 0px;
+    text-align: center;
 }
 
 .clients-slider-content .svg::after {
@@ -206,7 +177,7 @@ background: linear-gradient(135deg, rgba(89,78,226,1) 0%, rgba(78,67,214,1) 100%
     height: 100%;
     background-color: transparent;
     border: .5px solid var(--main-color);
-    border-radius: 30px 8px;
+    border-radius: 12px;
     -webkit-animation: ripple 2s infinite ease-in-out;
     animation: ripple 2s infinite ease-in-out;
 
@@ -229,7 +200,7 @@ background: linear-gradient(135deg, rgba(89,78,226,1) 0%, rgba(78,67,214,1) 100%
 .clients-area  .owl-nav .owl-prev:hover {
     background-color: transparent;
     display: inline-block;
-    border-radius: 30px;
+    border-radius: 12px;
     bottom: 50px;
     text-align: center;
     line-height: 26px;

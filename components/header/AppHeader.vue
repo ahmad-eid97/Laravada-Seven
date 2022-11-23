@@ -2,7 +2,7 @@
     <header>
         <app-top-nav></app-top-nav>
         <b-navbar toggleable="lg">
-            <b-navbar-brand href="#">
+            <b-navbar-brand href="/">
                 <img src="/assets/images/logo.png" alt="logoImage" style="maxWidth: 250px">
             </b-navbar-brand>
 
