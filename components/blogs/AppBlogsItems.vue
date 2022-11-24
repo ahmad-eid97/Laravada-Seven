@@ -4,9 +4,6 @@
             <div class="section-title text-center">
                 <span class="sp-color2">Latest Blog</span>
                 <h2>Let’s Check Some Latest Blog</h2>
-                <div class="seprator">
-                    <img src="https://avada.theme-fusion.com/financial-advisor/wp-content/uploads/sites/145/2020/08/slant-separator.png" alt="">
-                </div>
             </div>
             <div class="row pt-45">
                 <div v-for="blog in blogs.blogs" :key="blog.id" class="col-lg-4 col-md-6" @click="$router.push(`/blog/${blog.id}`)">
@@ -16,8 +13,8 @@
                                 <img :src="blog.category.image" alt="Blog Images">
                             </router-link>
                             <div class="blog-tag">
-                                <h3>11</h3>
-                                <span>Dec</span>
+                                <h3>{{ $date(new Date(blog.publish_date), 'dd') }}</h3>
+                                <span>{{ $date(new Date(blog.publish_date), 'MMM') }}</span>
                             </div>
                         </div>
                         <h3 class="title">
@@ -26,13 +23,13 @@
                         <div class="content">
                             <ul>
                                 <li>
-                                    <a href="#"><font-awesome-icon icon="fa-regular fa-user" />By Admin</a>
+                                    <a href="#"><font-awesome-icon icon="fa-regular fa-user" />By {{blog.username}}</a>
                                 </li>
                                 <li>
                                     <a href="index.html"><font-awesome-icon icon="fa-solid fa-tag" />Business</a>
                                 </li>
                             </ul>
-                            <p>{{blog.description}}</p>
+                            <p>{{blog.short_description}}</p>
                         </div>
                     </div>
                 </div>
@@ -66,11 +63,11 @@ export default {
         margin-bottom: 8px;
         font-weight: 600;
         display: block;
-        color: #51e5a5;
+        color: var(--main-color);
     }
     .blog-area .section-title h2 {
         max-width: 600px;
-        color: #212934;
+        color: #212529;
         font-size: 35px;
         font-weight: 800;
         letter-spacing: -1px;
@@ -92,7 +89,7 @@ export default {
         -webkit-box-shadow: 0 0 15px rgba(0,0,0,.05);
         box-shadow: 0 0 15px rgba(0,0,0,.05);
         margin-bottom: 30px;
-        border-radius: 60px 12px 60px 12px;
+        border-radius: 12px;
         -webkit-transition: .9s;
         transition: .9s;
         border: 1px solid #f1f1f1;
@@ -113,7 +110,7 @@ export default {
         margin: 0 0 0;
     }
     .blog-card .blog-img img {
-        border-radius: 60px 12px 0 0;
+        border-radius: 12px 12px 0 0;
         height: 250px;
         width: 100%;
     }
@@ -124,7 +121,7 @@ export default {
         text-align: center;
         background-color: var(--main-color);
         padding: 15px 12px;
-        border-radius: 30px 8px 30px 8px;
+        border-radius: 12px;
         text-align: center;
     }
     .blog-card:hover .blog-img .blog-tag {
@@ -134,7 +131,7 @@ export default {
         text-align: center;
         background-color: var(--main-color);
         padding: 15px 12px;
-        border-radius: 30px 8px 30px 8px;
+        border-radius: 12px;
         text-align: center;
     }
     .blog-card .blog-img .blog-tag h3 {
@@ -151,11 +148,11 @@ export default {
         font-weight: 500;
     }
     .blog-card .content ul li a {
-        color: var(--main-color);
+        color: #212529;
     }
     .blog-card .content ul li a svg{
         font-size: 20px;
-        color: #51e5a5;
+        color: var(--main-color);
         margin-right: 5px;
         position: relative;
         top: 3px;
@@ -178,7 +175,7 @@ export default {
     .blog-card h3.title {
         font-size: 22px;
         padding: 10px 30px;
-        background: #51e5a5; 
+        background: var(--main-color); 
         text-align: center;
         position: relative;
         z-index: 1;
