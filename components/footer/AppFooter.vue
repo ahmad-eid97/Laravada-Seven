@@ -34,7 +34,7 @@
                                 <a href="#">
                                     <font-awesome-icon icon="fa-regular fa-envelope" />
 
-                                    <span class="menu-text">info@railcoder.com</span>
+                                    <span class="menu-text">{{$store.state.websiteSettings.find(one => one.key === 'email').plain_value}}</span>
                                 </a>
                             </li>
                             <li>
@@ -69,11 +69,13 @@
             <div class="col-auto logo">
                 <img src="/assets/images/logo.png" alt="logoImage" style="width: 200px; marginBottom: 25px">
                 <div class="col-12 text-end">
-                    <a href="#"><font-awesome-icon icon="fa-brands fa-instagram" /></a>
-                    <a href="#">
+                    <a :href="`https://${$store.state.footerData.instagram}`" target="_blank">
+                        <font-awesome-icon icon="fa-brands fa-instagram" />
+                    </a>
+                    <a :href="`https://${$store.state.footerData.twitter}`" target="_blank">
                         <font-awesome-icon icon="fa-brands fa-twitter" />
                     </a>
-                    <a href="#">
+                    <a :href="`https://${$store.state.footerData.facebook}`" target="_blank">
                         <font-awesome-icon icon="fa-brands fa-facebook-f" />
                     </a>
                 </div>

@@ -1,6 +1,5 @@
 <template>
-    <section class="about-partners">
-                
+    <section class="about-partners">     
         <swiper :options="swiperOption" class="owl-carousel">
         <swiper-slide v-for="partner in partners.partners" :key="partner.id">
             <div class="item">
@@ -13,15 +12,12 @@
             </div>
         </swiper-slide>
         </swiper>
-
     </section>
 </template>
 
 <script>
-
 export default {
     name: 'AppAboutPartners',
-    props: ["partners"],
     data() {
         return {
             swiperOption: {
@@ -55,14 +51,14 @@ export default {
             }
             },
         }
-    }
+    },
+    props: ["partners"]
 }
 </script>
 <style>
     .about-partners {
         padding: 45px 100px 0 !important;
-        background: rgb(89,78,226);
-        background: linear-gradient(135deg, rgba(89,78,226,1) 0%, rgba(78,67,214,1) 100%); 
+        background-color: var(--main-color) !important;
     }
     .about-partners::before {
         content: '';
@@ -84,11 +80,11 @@ export default {
         text-align: center;
     }
     .about-partners .owl-carousel .item img {
-        max-height: 115px;
+        height: 80px !important;
         width: auto;
         display: inline;
         max-width: 100%;
-        height: auto;
+        width: auto !important;
     }
     .about-partners .owl-carousel .owl-nav.disabled {
         display: none !important;
