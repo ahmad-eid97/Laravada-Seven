@@ -10,51 +10,11 @@
             </p>
         </div>
         <div class="row">
-            <div class="col-sm-6 col-lg-4 work-item">
+            <div v-for="service in services.slice(0, 6)" :key="service.id" class="col-sm-6 col-lg-4 work-item">
                 <div class="inner">
-                    <h3>Investment</h3>
+                    <h3>{{service.title}}</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas magna ligula, rutrum in venenatis aliquet, congue gravida lorem.
-                    </p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 work-item" style="margin-top: 32px; ">
-                <div class="inner" style="background-color: rgb(52, 41, 173)">
-                    <h3>Financial Planning</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas magna ligula, rutrum in venenatis aliquet, congue gravida lorem.
-                    </p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 work-item">
-                <div class="inner">
-                    <h3>Debt Help</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas magna ligula, rutrum in venenatis aliquet, congue gravida lorem.
-                    </p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 work-item">
-                <div class="inner" style="background-color: rgb(52, 41, 173)">
-                    <h3>Retirement</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas magna ligula, rutrum in venenatis aliquet, congue gravida lorem.
-                    </p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 work-item" style="margin-top: 32px; ">
-                <div class="inner">
-                    <h3>Mortgage Advice</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas magna ligula, rutrum in venenatis aliquet, congue gravida lorem.
-                    </p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 work-item">
-                <div class="inner" style="background-color: rgb(52, 41, 173)">
-                    <h3>General Advice</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas magna ligula, rutrum in venenatis aliquet, congue gravida lorem.
+                        {{service.description.substring(0, 200) + '...'}}
                     </p>
                 </div>
             </div>
@@ -71,6 +31,7 @@
 <script>
 export default {
     name: 'AppHomeWork',
+    props: ["services"],
     data() {
         return {
             

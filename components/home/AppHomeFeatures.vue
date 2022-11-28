@@ -15,20 +15,20 @@
                     <div class="feature-shape">
                         <div class="row mx-0">
                             <div class="col image p-0">
-                                <img src="https://avada.theme-fusion.com/financial-advisor/wp-content/uploads/sites/145/2020/08/testimonial-image.jpg" alt="">
+                                <img :src="testimonials[0].image" alt="">
                             </div>
                             <div class="col text p-0">
                                 <div class="text-inner">
-                                    <h2>Phenomenal</h2>
+                                    <h2>{{testimonials[0].title}}</h2>
                                     <p>
                                         <em>
-                                            Going from clueless with money to being savvy enough to invest in my future and live well within my means in what feels like an instant after talking to Avada Financial Consultants has really put my mind at rest and I can now make informed,educated smart decisions with my money.
+                                            {{testimonials[0].description}}
                                         </em>
                                     </p>
                                     <p>
-                                        <a href="#">
+                                        <nuxt-link to="/testimonials">
                                             <strong>Read More Testimonials</strong>
-                                        </a>
+                                        </nuxt-link>
                                     </p>
                                 </div>
                             </div>
@@ -46,66 +46,18 @@
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas magna ligula, rutrum in venenatis aliquet, congue gravida lorem. Aliquam convallis orci a odio imperdiet, nec pharetra odio porta.
                         </p>
-                        <div class="accordion-container">
+                        <div v-for="faq in faqs.slice(0, 3)" :key="faq" class="accordion-container">
                             <b-card-header header-tag="div" class="p-1" role="tab">
-                                <div v-b-toggle.accordion-1>
+                                <div v-b-toggle="`accordion-${faq.id}`">
                                     <font-awesome-icon icon="fa-solid fa-plus" />
                                     <font-awesome-icon icon="fa-solid fa-minus" />
-                                    <span >Can We Consult Remotely?</span>
+                                    <span >{{faq.question}}</span>
                                 </div>
                             </b-card-header>
-                            <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
+                            <b-collapse :id="`accordion-${faq.id}`" visible accordion="my-accordion" role="tabpanel">
                                 <b-card-body>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vulputate blandit egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
-                                    </p>
-                                </b-card-body>
-                            </b-collapse>
-                        </div>
-                        <div class="accordion-container">
-                            <b-card-header header-tag="div" class="p-1" role="tab">
-                                <div v-b-toggle.accordion-2>
-                                    <font-awesome-icon icon="fa-solid fa-plus" />
-                                    <font-awesome-icon icon="fa-solid fa-minus" />
-                                    <span >Can We Consult Remotely?</span>
-                                </div>
-                            </b-card-header>
-                            <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
-                                <b-card-body>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vulputate blandit egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
-                                    </p>
-                                </b-card-body>
-                            </b-collapse>
-                        </div>
-                        <div class="accordion-container">
-                            <b-card-header header-tag="div" class="p-1" role="tab">
-                                <div v-b-toggle.accordion-3>
-                                    <font-awesome-icon icon="fa-solid fa-plus" />
-                                    <font-awesome-icon icon="fa-solid fa-minus" />
-                                    <span >Can We Consult Remotely?</span>
-                                </div>
-                            </b-card-header>
-                            <b-collapse id="accordion-3" accordion="my-accordion" role="tabpanel">
-                                <b-card-body>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vulputate blandit egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
-                                    </p>
-                                </b-card-body>
-                            </b-collapse>
-                        </div>
-                        <div class="accordion-container">
-                            <b-card-header header-tag="div" class="p-1" role="tab">
-                                <div v-b-toggle.accordion-4>
-                                    <font-awesome-icon icon="fa-solid fa-plus" />
-                                    <font-awesome-icon icon="fa-solid fa-minus" />
-                                    <span >Can We Consult Remotely?</span>
-                                </div>
-                            </b-card-header>
-                            <b-collapse id="accordion-4" accordion="my-accordion" role="tabpanel">
-                                <b-card-body>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vulputate blandit egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
+                                        {{faq.answer}}
                                     </p>
                                 </b-card-body>
                             </b-collapse>
@@ -120,6 +72,7 @@
 <script>
 export default {
     name: 'AppHomeFeatures',
+    props: ["testimonials", "faqs"],
     data() {
         return {
 

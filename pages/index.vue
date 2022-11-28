@@ -2,8 +2,8 @@
   <div class="home">
     <app-home-intro></app-home-intro>
     <app-home-featured></app-home-featured>
-    <app-home-features></app-home-features>
-    <app-home-work></app-home-work>
+    <app-home-features :testimonials="testimonials" :faqs="faqs"></app-home-features>
+    <app-home-work :services="services"></app-home-work>
   </div>
 </template>
 
@@ -22,6 +22,19 @@ import AppHomeWork from '../components/home/AppHomeWork.vue'
 
 export default {
   name: 'Home',
+  async asyncData({ $axios }) {
+    const testimonials = await $axios.get('/testimonials');
+
+    const faqs = await $axios.get('/faqs');
+
+    const services = await $axios.get('/services');
+
+    return {
+      testimonials: testimonials.data.data.testimonials,
+      faqs: faqs.data.data.fags,
+      services: services.data.data.services,
+    }
+  },
   components: {
     AppHomeIntro,
     AppHomeFeatured,
