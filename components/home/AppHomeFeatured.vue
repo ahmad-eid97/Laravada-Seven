@@ -3,18 +3,9 @@
         <h2>
             As Featured In
         </h2>
-        <div class="row mx-0">
-            <div class="col-sm-6 col-md-6 col-lg-3 brand">
-                <img src="https://avada.theme-fusion.com/financial-advisor/wp-content/uploads/sites/145/2020/09/internet-times.png" alt="">
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-3 brand">
-                <img src="https://avada.theme-fusion.com/financial-advisor/wp-content/uploads/sites/145/2020/09/money-magazine.png" alt="">
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-3 brand">
-                <img src="https://avada.theme-fusion.com/financial-advisor/wp-content/uploads/sites/145/2020/09/netcash.png" alt="">
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-3 brand">
-                <img src="https://avada.theme-fusion.com/financial-advisor/wp-content/uploads/sites/145/2020/09/ilifestyle.png" alt="">
+        <div class="row mx-0 justify-content-center">
+            <div v-for="partner in partners" :key="partner" class="col-sm-6 col-md-6 col-lg-3 brand">
+                <img :src="partner.image" :alt="partner.title">
             </div>
         </div>
     </div>
@@ -23,6 +14,7 @@
 <script>
 export default {
     name: 'AppHomeFeatured',
+    props: ["partners"],
     data() {
         return {
 
@@ -59,6 +51,7 @@ export default {
     }
     .featured .brand img {
         max-width: 100%;
+        height: 80px;
     }
     .featured .brand:hover {
         filter: opacity(100%);
