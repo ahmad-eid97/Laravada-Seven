@@ -48,7 +48,7 @@
       </div>
       <div class="col-lg-6 p-0">
         <div class="feature-2">
-          <div class="feature-inner">
+          <div class="feature-inner" v-if="faqs.length >= 1">
             <h2>Financial Freedom could be just one phonecall away…</h2>
             <div class="seprator">
               <img
