@@ -72,4 +72,12 @@ export default {
   margin-top: 5px;
   margin-bottom: 20px;
 }
+.thumb img {
+  width: 100%;
+  height: 250px;
+}
+.card .content {
+  padding: 20px;
+  text-align: center !important;
+}
 </style>
