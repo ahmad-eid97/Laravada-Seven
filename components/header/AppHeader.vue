@@ -30,12 +30,17 @@
         is-nav
       >
         <b-navbar-nav class="align-items-center">
-          <b-nav-item :to="localePath('/')">HOME</b-nav-item>
-          <b-nav-item :to="localePath('/about')">ABOUT</b-nav-item>
+          <b-nav-item :to="localePath('/')">Home</b-nav-item>
+          <b-nav-item :to="localePath('/about')">About</b-nav-item>
           <b-nav-item :to="localePath('/testimonials')">Rates</b-nav-item>
           <b-nav-item :to="localePath('/services')">Webinar</b-nav-item>
-          <b-nav-item :to="localePath('/blogs')">ARTICLES</b-nav-item>
+          <b-nav-item :to="localePath('/blogs')">Articles</b-nav-item>
+          <b-nav-item :to="localePath('/careers')">Career</b-nav-item>
+          <b-nav-item :to="localePath('/events')">Events</b-nav-item>
           <b-nav-item :to="localePath('/contact')">Contact Us</b-nav-item>
+          <div class="logout" @click="logout">
+            <i class="fa-regular fa-right-from-bracket"></i>
+          </div>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -63,6 +68,12 @@ export default {
   },
   mounted() {},
   methods: {
+    logout() {
+      this.$store.commit("setUserData", null);
+      this.$cookies.remove("cms-auth");
+      this.$cookies.remove("cms-user");
+      window.location.href = "/login";
+    },
     handleScroll() {
       if (window.pageYOffset > 200) {
         if (this.topOfPage) this.topOfPage = false;
@@ -89,6 +100,17 @@ header {
   padding-left: 30px;
   z-index: 5000 !important;
   position: relative;
+}
+.logout {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #fff;
+  color: var(--main-color);
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  cursor: pointer;
 }
 .navbar-brand img {
   max-height: 49px;
