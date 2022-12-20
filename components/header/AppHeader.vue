@@ -38,7 +38,7 @@
           <b-nav-item :to="localePath('/careers')">Career</b-nav-item>
           <b-nav-item :to="localePath('/events')">Events</b-nav-item>
           <b-nav-item :to="localePath('/contact')">Contact Us</b-nav-item>
-          <div class="logout" @click="logout">
+          <div v-if="$store.state.user" class="logout" @click="logout">
             <i class="fa-regular fa-right-from-bracket"></i>
           </div>
         </b-navbar-nav>
@@ -72,7 +72,7 @@ export default {
       this.$store.commit("setUserData", null);
       this.$cookies.remove("cms-auth");
       this.$cookies.remove("cms-user");
-      window.location.href = "/login";
+      this.$router.push(this.localePath("/login"));
     },
     handleScroll() {
       if (window.pageYOffset > 200) {
