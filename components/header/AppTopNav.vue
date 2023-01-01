@@ -24,7 +24,11 @@
         <span><langSwitch></langSwitch></span>
       </ul>
     </div>
-    <a href="#" class="btn col-auto">BOOK NOW</a>
+    <a href="#" class="btn col-auto largeBtn">BOOK NOW</a>
+    <div class="smallTop">
+      <a href="#" class="btn col-auto">BOOK NOW</a>
+      <span><langSwitch></langSwitch></span>
+    </div>
   </div>
 </template>
 
@@ -49,6 +53,20 @@ export default {
 }
 .top-nav {
   margin-bottom: 20px;
+}
+.largeBtn {
+  @include md {
+    display: none;
+  }
+}
+.smallTop {
+  display: none;
+  @include md {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+  }
 }
 .top-nav .btn {
   padding: 13px 29px;

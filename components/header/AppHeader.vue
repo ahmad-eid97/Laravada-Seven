@@ -14,28 +14,38 @@
     </div>
     <app-top-nav></app-top-nav>
     <b-navbar toggleable="lg">
-      <b-navbar-brand :href="localePath('/')">
+      <b-navbar-brand :href="localePath('/')" class="brand">
         <img
           src="/assets/images/logo.png"
           alt="logoImage"
-          style="maxwidth: 250px"
+          style="maxwidth: 200px"
         />
       </b-navbar-brand>
 
-      <b-navbar-toggle target="navbar-toggle-collapse">
-        <template #default="{ expanded }">
-          <span
-            class="menu-trigger"
-            :class="expanded ? 'active' : ''"
-            id="menu03"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-        </template>
-      </b-navbar-toggle>
-
+      <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center smallScr">
+          <div class="m-0 cartIcon" @click="openCart = !openCart">
+            <span>{{ $store.state.cartItems.length }}</span>
+            <i class="fa-regular fa-cart-plus"></i>
+          </div>
+          <div v-if="$store.state.user" class="logout" @click="logout">
+            <i class="fa-regular fa-right-from-bracket"></i>
+          </div>
+        </div>
+        <b-navbar-toggle target="navbar-toggle-collapse">
+          <template #default="{ expanded }">
+            <span
+              class="menu-trigger"
+              :class="expanded ? 'active' : ''"
+              id="menu03"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </template>
+        </b-navbar-toggle>
+      </div>
       <b-collapse
         id="navbar-toggle-collapse"
         class="ml-auto justify-content-end"
@@ -50,15 +60,23 @@
           <b-nav-item :to="localePath('/careers')">Career</b-nav-item>
           <b-nav-item :to="localePath('/events')">Events</b-nav-item>
           <b-nav-item :to="localePath('/contact')">Contact Us</b-nav-item>
-          <div class="m-0 cartIcon" @click="openCart = !openCart">
-            <span>{{ $store.state.cartItems.length }}</span>
-            <i class="fa-regular fa-cart-plus"></i>
-          </div>
-          <div v-if="$store.state.user" class="logout" @click="logout">
-            <i class="fa-regular fa-right-from-bracket"></i>
-          </div>
+          <b-nav-item
+            :to="localePath('/contact')"
+            v-if="$store.state.user"
+            @click="logout"
+            >Logout</b-nav-item
+          >
         </b-navbar-nav>
       </b-collapse>
+      <div class="d-flex align-items-center largeScr">
+        <div class="m-0 cartIcon" @click="openCart = !openCart">
+          <span>{{ $store.state.cartItems.length }}</span>
+          <i class="fa-regular fa-cart-plus"></i>
+        </div>
+        <div v-if="$store.state.user" class="logout" @click="logout">
+          <i class="fa-regular fa-right-from-bracket"></i>
+        </div>
+      </div>
     </b-navbar>
   </header>
 </template>
@@ -182,6 +200,9 @@ header {
     &.opened {
       transform: translateX(0);
     }
+    @include xs {
+      width: 350px;
+    }
   }
   .cartIcon {
     border: 1px solid #fff;
@@ -192,6 +213,7 @@ header {
     place-items: center;
     cursor: pointer;
     position: relative;
+    margin: 0 10px !important;
     span {
       position: absolute;
       top: -15px;
@@ -204,9 +226,17 @@ header {
       display: grid;
       place-content: center;
       font-size: 1.2rem;
+      @include sm {
+        font-size: 1rem;
+      }
     }
     i {
       color: #fff;
+    }
+    @include sm {
+      width: 40px;
+      height: 40px;
+      margin: 0 10px !important;
     }
     &:hover {
       background-color: var(--main-color);
@@ -227,6 +257,30 @@ header {
   place-items: center;
   font-size: 1.2rem;
   cursor: pointer;
+  @include md {
+    display: none;
+  }
+}
+.smallScr {
+  align-items: center;
+  display: none !important;
+  @include md {
+    display: flex !important;
+  }
+}
+.largeScr {
+  align-items: center;
+  display: flex !important;
+  @include md {
+    display: none !important;
+  }
+}
+.brand {
+  img {
+    @include sm {
+      width: 180px;
+    }
+  }
 }
 .navbar-brand img {
   max-height: 49px;
