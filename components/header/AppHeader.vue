@@ -64,6 +64,7 @@
             :to="localePath('/contact')"
             v-if="$store.state.user"
             @click="logout"
+            class="outLarge"
             >Logout</b-nav-item
           >
         </b-navbar-nav>
@@ -259,6 +260,12 @@ header {
   cursor: pointer;
   @include md {
     display: none;
+  }
+}
+.outLarge {
+  display: none;
+  @include md {
+    display: inline;
   }
 }
 .smallScr {
