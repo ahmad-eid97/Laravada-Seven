@@ -291,9 +291,9 @@ header {
   }
 }
 .outLarge {
-  display: none;
+  display: none !important;
   @include md {
-    display: inline;
+    display: inline !important;
   }
 }
 .smallScr {
