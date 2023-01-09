@@ -52,21 +52,32 @@
         is-nav
       >
         <b-navbar-nav class="align-items-center">
-          <b-nav-item :to="localePath('/')">Home</b-nav-item>
-          <b-nav-item :to="localePath('/about')">About</b-nav-item>
-          <b-nav-item :to="localePath('/testimonials')">Rates</b-nav-item>
-          <b-nav-item :to="localePath('/services')">Webinar</b-nav-item>
-          <b-nav-item :to="localePath('/blogs')">Articles</b-nav-item>
-          <b-nav-item :to="localePath('/careers')">Career</b-nav-item>
-          <b-nav-item :to="localePath('/events')">Events</b-nav-item>
-          <b-nav-item :to="localePath('/contact')">Contact Us</b-nav-item>
           <b-nav-item
-            :to="localePath('/contact')"
-            v-if="$store.state.user"
-            @click="logout"
-            class="outLarge"
-            >Logout</b-nav-item
+            active-class="active"
+            :to="localePath(`/${item.link}`)"
+            exact
+            v-for="item in $store.state.topMenu"
+            :key="item.id"
           >
+            <span v-if="!item.child.length">{{ item.label }}</span>
+
+            <b-dropdown
+              :text="item.label"
+              block
+              class="m-2 dropdownBtn"
+              v-if="item.child.length"
+            >
+              <b-dropdown-item
+                v-for="child in item.child"
+                :key="child.id"
+                :to="localePath('/' + child.link)"
+                >{{ child.label }}</b-dropdown-item
+              >
+            </b-dropdown>
+          </b-nav-item>
+          <b-nav-item v-if="$store.state.user" @click="logout" class="outLarge">
+            Logout
+          </b-nav-item>
         </b-navbar-nav>
       </b-collapse>
       <div class="d-flex align-items-center largeScr">
@@ -329,6 +340,9 @@ header {
   justify-content: center;
   transition: all calc(300 * 1ms) cubic-bezier(0.42, 0.01, 0.58, 1);
   font-size: 15px;
+  & > .dropdown {
+    display: none;
+  }
 }
 .nav-link {
   padding: 0 !important;
@@ -430,6 +444,25 @@ header {
     font-weight: 800;
     font-size: 15px;
     text-align: right;
+  }
+}
+.dropdownBtn {
+  margin: 0 !important;
+  button {
+    background: none !important;
+    padding: 0 !important;
+    text-transform: uppercase !important;
+    font-size: 1rem !important;
+    font-family: unset !important;
+    font-weight: 700 !important;
+    box-shadow: none !important;
+    border: none !important;
+    min-width: 60px !important;
+    position: relative;
+    top: -3px;
+  }
+  .dropdown-menu {
+    top: 40px !important;
   }
 }
 </style>
