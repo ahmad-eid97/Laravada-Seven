@@ -5,9 +5,10 @@
       <div
         v-for="partner in partners"
         :key="partner"
-        class="col-sm-6 col-md-6 col-lg-3 brand"
+        class="col-sm-6 col-md-4 col-lg-2 brand"
       >
         <img :src="partner.image" :alt="partner.title" />
+        <h5>{{ partner.title }}</h5>
       </div>
     </div>
   </div>
@@ -46,11 +47,12 @@ export default {
         margin-right: 24px; */
   /* width: 450px; */
   height: 165px;
-  filter: opacity(40%);
+  filter: opacity(80%);
 }
 .featured .brand img {
   max-width: 100%;
   height: 80px;
+  object-fit: contain;
 }
 .featured .brand:hover {
   filter: opacity(100%);

@@ -344,6 +344,18 @@ header {
     display: none;
   }
 }
+.nav-item {
+  @include md {
+    a {
+      width: 100%;
+      display: block;
+      text-align: center;
+    }
+    button {
+      color: #000 !important;
+    }
+  }
+}
 .nav-link {
   padding: 0 !important;
   font-weight: 800;
@@ -457,12 +469,15 @@ header {
     font-weight: 700 !important;
     box-shadow: none !important;
     border: none !important;
-    min-width: 60px !important;
+    min-width: unset !important;
+    width: 100%;
+    min-height: 30px;
     position: relative;
     top: -3px;
   }
   .dropdown-menu {
     top: 40px !important;
+    left: -50px;
   }
 }
 </style>
