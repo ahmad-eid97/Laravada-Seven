@@ -24,9 +24,19 @@
         <span><langSwitch></langSwitch></span>
       </ul>
     </div>
-    <a href="#" class="btn col-auto largeBtn">BOOK NOW</a>
+    <a
+      href="/qoutation"
+      class="btn col-auto largeBtn"
+      @click="$router.push('/qoutation')"
+      >Get Qoutation</a
+    >
     <div class="smallTop">
-      <a href="#" class="btn col-auto">BOOK NOW</a>
+      <a
+        href="/qoutation"
+        class="btn col-auto"
+        @click="$router.push('/qoutation')"
+        >Get Qoutation</a
+      >
       <span><langSwitch></langSwitch></span>
     </div>
   </div>
