@@ -1,5 +1,6 @@
 <template>
   <footer>
+    <subscribe />
     <div class="row mx-0">
       <div class="col navigate">
         <div class="row mx-0">
@@ -101,9 +102,10 @@
 </template>
 
 <script>
+import Subscribe from "../subscribe/subscribe.vue";
 export default {
   name: "AppFooter",
-  components: {},
+  components: { Subscribe },
   data() {
     return {};
   },
