@@ -34,7 +34,9 @@
         ligula, rutrum in venenatis aliquet, congue gravida lorem. Aliquam
         convallis orci a odio imperdiet, nec pharetra odio porta.
       </p>
-      <a href="#" class="btn col-auto">REQUEST CALLBACK</a>
+      <nuxt-link to="/services" class="btn col-auto"
+        >SEE ALL SERVICES</nuxt-link
+      >
     </div>
   </section>
 </template>
