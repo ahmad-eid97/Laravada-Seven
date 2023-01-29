@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <app-home-intro></app-home-intro>
+    <app-home-intro :topBanner="topBanner" />
     <app-home-featured :partners="partners"></app-home-featured>
     <app-home-features
       :testimonials="testimonials"
@@ -94,6 +94,12 @@ export default {
     };
   },
   async asyncData({ $axios, app }) {
+    const topBanner = await $axios.get("/sections/banner-top", {
+      headers: {
+        "Accept-Language": app.i18n.locale,
+      },
+    });
+
     const testimonials = await $axios.get("/testimonials");
 
     const partners = await $axios.get("/partners");
@@ -115,6 +121,7 @@ export default {
     });
 
     return {
+      topBanner: topBanner.data.data,
       testimonials: testimonials.data.data.testimonials,
       partners: partners.data.data.partners,
       faqs: faqs.data.data.fags,

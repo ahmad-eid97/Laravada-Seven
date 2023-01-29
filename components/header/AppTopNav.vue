@@ -3,24 +3,35 @@
     <div class="col-auto contact">
       <ul class="d-flex align-items-center">
         <li>
-          <a href="#">
+          <span>
             <i class="fa-regular fa-envelope"></i>
 
-            <span class="menu-text">info@railcoder.com</span>
-          </a>
+            <span class="menu-text">
+              {{
+                $store.state.websiteSettings.find((one) => one.key === "email")
+                  .plain_value
+              }}</span
+            >
+          </span>
         </li>
         <li>
-          <a href="#">
+          <span>
             <i class="fa-solid fa-phone"></i>
-            <span class="menu-text">+1111111111</span>
-          </a>
+            <span class="menu-text">
+              {{
+                $store.state.websiteSettings.find(
+                  (one) => one.key === "contact_phone"
+                ).plain_value
+              }}</span
+            >
+          </span>
         </li>
-        <li>
+        <!-- <li>
           <a href="#">
             <i class="fa-regular fa-clock"></i>
             <span class="menu-text">Available Mon-Fri: 8:00AM – 6:00PM</span>
           </a>
-        </li>
+        </li> -->
         <span><langSwitch></langSwitch></span>
       </ul>
     </div>
@@ -77,6 +88,9 @@ export default {
     justify-content: center;
     gap: 50px;
   }
+}
+span {
+  color: #fff;
 }
 .top-nav .btn {
   padding: 13px 29px;

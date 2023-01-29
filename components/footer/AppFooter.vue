@@ -6,18 +6,14 @@
         <div class="row mx-0">
           <div class="col-auto">
             <h2>Navigate</h2>
-            <ul>
-              <li>
-                <nuxt-link :to="localePath('/contact')"> CONTACT </nuxt-link>
-              </li>
-              <li>
-                <nuxt-link :to="localePath('/faq')"> FAQS </nuxt-link>
-              </li>
-              <li>
-                <nuxt-link :to="localePath('/policy')"> PRIVACY </nuxt-link>
-              </li>
-              <li>
-                <nuxt-link :to="localePath('/terms')"> TERMS </nuxt-link>
+            <ul class="footer-list">
+              <!-- <li><a href="#">About Us</a></li> -->
+              <li v-for="page in $store.state.footerPages" :key="page.id">
+                <nuxt-link
+                  :to="localePath(generatePagePath(page.id))"
+                  v-if="page.status"
+                  >{{ page.name }}</nuxt-link
+                >
               </li>
             </ul>
           </div>
@@ -37,58 +33,44 @@
               <li>
                 <a href="#">
                   <i class="fa-solid fa-phone"></i>
-                  <span class="menu-text">0800 000 000</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fa-regular fa-clock"></i>
-                  <span class="menu-text"
-                    >Available Mon-Fri: 8:00AM – 6:00PM</span
-                  >
+                  <span class="menu-text">{{
+                    $store.state.websiteSettings.find(
+                      (one) => one.key === "contact_phone"
+                    ).plain_value
+                  }}</span>
                 </a>
               </li>
             </ul>
             <p>
-              Don‘t call us, we‘ll call you. Request a callback, just drop your
-              phone number in the form below and hit the request.
+              {{
+                $store.state.websiteSettings.find(
+                  (one) => one.key === "description"
+                ).plain_value
+              }}
             </p>
             <form class="intro-form">
-              <b-form-input
-                id="input-1"
-                type="tel"
-                placeholder="Telephone Number"
-              >
-              </b-form-input>
-              <a href="#" class="btn col-12">REQUEST CALLBACK</a>
+              <a href="/qoutation" class="btn col-12">REQUEST QOUTATION</a>
             </form>
           </div>
         </div>
       </div>
       <div class="col-auto logo">
         <img
-          src="/assets/images/logo.png"
+          :src="
+            $store.state.websiteSettings.find((one) => one.key === 'logo')
+              .plain_value
+          "
           alt="logoImage"
           style="width: 200px; marginbottom: 25px"
         />
         <div class="col-12 text-end">
           <a
-            :href="`https://${$store.state.footerData.instagram}`"
+            v-for="link in $store.state.socialLinks"
+            :key="link.key"
+            :href="link.url"
             target="_blank"
           >
-            <i class="fa-brands fa-instagram"></i>
-          </a>
-          <a
-            :href="`https://${$store.state.footerData.twitter}`"
-            target="_blank"
-          >
-            <i class="fa-brands fa-twitter"></i>
-          </a>
-          <a
-            :href="`https://${$store.state.footerData.facebook}`"
-            target="_blank"
-          >
-            <i class="fa-brands fa-facebook-f"></i>
+            <i :class="link.icon"></i>
           </a>
         </div>
       </div>
@@ -109,7 +91,20 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    generatePagePath(id) {
+      switch (id) {
+        case 1:
+          return "/about";
+        case 2:
+          return "/contact";
+        case 3:
+          return "/terms";
+        case 4:
+          return "/policy";
+      }
+    },
+  },
 };
 </script>
 <style>
