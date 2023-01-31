@@ -83,6 +83,7 @@ export default {
       font-size: 1rem;
       cursor: pointer;
       /* opacity: 0.8; */
+      color: #000;
       position: relative;
       z-index: 2;
       background-color: #fff;
