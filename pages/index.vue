@@ -1,13 +1,19 @@
 <template>
   <div class="home">
-    <app-home-intro :topBanner="topBanner" />
+    <div v-if="topBanner.status">
+      <app-home-intro :topBanner="topBanner.data" />
+    </div>
     <app-home-featured :partners="partners"></app-home-featured>
     <app-home-features
       :testimonials="testimonials"
       :faqs="faqs"
     ></app-home-features>
-    <app-home-activities :activities="activities" />
-    <app-home-steps :steps="steps" />
+    <div v-if="activities.status">
+      <app-home-activities :activities="activities.data" />
+    </div>
+    <div v-if="steps.status">
+      <app-home-steps :steps="steps.data" />
+    </div>
     <app-home-work :services="services"></app-home-work>
     <SocialChat :attendants="attendants">
       <p slot="header">Click one of our representatives below to chat.</p>
@@ -121,13 +127,13 @@ export default {
     });
 
     return {
-      topBanner: topBanner.data.data,
+      topBanner: topBanner.data,
       testimonials: testimonials.data.data.testimonials,
       partners: partners.data.data.partners,
       faqs: faqs.data.data.fags,
       services: services.data.data.services,
-      activities: activities.data.data,
-      steps: steps.data.data,
+      activities: activities.data,
+      steps: steps.data,
     };
   },
   components: {
