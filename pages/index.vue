@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div v-if="topBanner.status">
+    <div v-if="$store.state.sectionsStatus['banner-top']">
       <app-home-intro :topBanner="topBanner.data" />
     </div>
     <app-home-featured :partners="partners"></app-home-featured>
@@ -8,10 +8,10 @@
       :testimonials="testimonials"
       :faqs="faqs"
     ></app-home-features>
-    <div v-if="activities.status">
+    <div v-if="$store.state.sectionsStatus.activities">
       <app-home-activities :activities="activities.data" />
     </div>
-    <div v-if="steps.status">
+    <div v-if="$store.state.sectionsStatus.steps">
       <app-home-steps :steps="steps.data" />
     </div>
     <app-home-work :services="services"></app-home-work>
